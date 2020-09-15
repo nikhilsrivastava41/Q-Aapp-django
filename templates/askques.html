@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/"><strong>Q&A Site</strong> </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../askques">Ask</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">Hello {{user.first_name}}</li>
+          <li class="nav-item">
+            <a class="nav-link" href="logout">LogOut</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="../login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../register">Register</a>
+          </li>
+          {% endif %}
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <input type="submit" value="Search" />
+        </form>
+      </div>
+    </nav>
+    <div class="content container">
+      <h1 style="text-align: center">Ask a Question</h1>
+      <p>Type your question below.</p>
+      {% if user.is_authenticated %}
+      <p>{{user.is_authenticated}}</p>
+      <form class="" action="askques" method="post">
+        {% csrf_token %}
+        <input
+          type="text"
+          name="title"
+          value=""
+          autocomplete="off"
+          placeholder="What's your question's title?"
+          style="width: 250px"
+        />
+        <br />
+        <br />
+        <textarea
+          name="q"
+          rows="8"
+          cols="80"
+          placeholder="What's your question?"
+        ></textarea>
+        <p />
+        <input
+          type="text"
+          name="posted_by"
+          value=""
+          autocomplete="off"
+          placeholder="Enter your name ..."
+        />
+        <p />
+        <input type="submit" name="ask" value="Ask Question" />
+      </form>
+      {% else %}
+      <h4>Login first, then you can ask your ques</h4>
+      {% endif %} {% if error %}
+      <p class="error">{{ error }}</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
