@@ -69,12 +69,16 @@
     <h2>Question List</h2>
     <div class="container">
       {% for qt in queslist%}
-      <div>
-        <h3 style="color: blue">
-          Title: <a href="../quesdetail/{{qt.id}}">{{qt.title}}</a>
-        </h3>
-        <h4>Question : {{qt.q}}</h4>
-        <p><a href="../ansdetail/{{qt.id}}">Answer it (Login first)</a></p>
+      <div class="card" style="margin-bottom: 10px">
+        <div class="card-body">
+          <h5 class="card-title">
+            Title: <a href="../quesdetail/{{qt.id}}">{{qt.title}}</a>
+          </h5>
+          <p class="card-text">Question : {{qt.q}}</p>
+          <a href="../ansdetail/{{qt.id}}" class="btn btn-primary"
+            >Answer it (Login first)</a
+          >
+        </div>
       </div>
       {% endfor %}
     </div>

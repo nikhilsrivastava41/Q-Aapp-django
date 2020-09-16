@@ -15,6 +15,6 @@ class People(models.Model):
     password = models.CharField(max_length=20)
 
 
-class Answers(models.Model):
-    a = models.CharField(max_length=300)
+class AnswerQuestion(models.Model):
     num = models.IntegerField()
+    a = models.CharField(max_length=300)

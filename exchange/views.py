@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Question
 from .models import People
-from .models import Answers
+from .models import AnswerQuestion
 from django.contrib import auth
 from django.shortcuts import redirect
 from django.contrib.auth.models import User, auth
@@ -60,9 +60,7 @@ def ansdetail(request, id):
     if request.method == 'POST':
         a = request.POST['a']
         num = id
-        ans = Answers()
-        ans.a = a
-        ans.num = num
+        ans = AnswerQuestion(a=a, num=id)
         print(num + " " + a)
         ans.save()
         return redirect('/')

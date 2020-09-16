@@ -65,7 +65,6 @@
       <h1 style="text-align: center">Ask a Question</h1>
       <p>Type your question below.</p>
       {% if user.is_authenticated %}
-      <p>{{user.is_authenticated}}</p>
       <form class="" action="askques" method="post">
         {% csrf_token %}
         <input
